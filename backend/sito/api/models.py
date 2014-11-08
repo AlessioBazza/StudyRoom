@@ -4,7 +4,7 @@ from datetime import datetime
 from sito import settings
 
 class Utenti(models.Model):
-        ip_address = models.IPAddressField()
+        code = models.CharField(max_length=20,primary_key = True, null = False,default='aaa')
 
 
 class Stabili(models.Model):
@@ -12,7 +12,7 @@ class Stabili(models.Model):
 
 
 class Aule(models.Model):
-        nome = models.CharField(max_length=4)
+        nome = models.CharField(max_length=20)
         piano = models.IntegerField()
         dimensione = models.IntegerField()
         locazione = models.ForeignKey(Stabili)
