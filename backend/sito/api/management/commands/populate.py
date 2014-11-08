@@ -33,7 +33,7 @@ class Command(BaseCommand):
             u3 = Utenti(code='ccc')
             u3.save()
 
-            p1 = Posti(posti_liberi=90,user = u2,aula=a4)
+            p1 = Posti(posti_liberi=90,user = u2,aula=a4 )
             p1.save()
             p2 = Posti(posti_liberi=50,user = u3,aula=a8)
             p2.save()
