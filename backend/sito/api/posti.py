@@ -7,8 +7,6 @@ class SerializerListaPosti(serializers.ModelSerializer):
     timestamp = serializers.DateTimeField()
     posti_liberi = serializers.IntegerField()
 
-    aula = serializers.Field(source='aula.nome')
-
     class Meta:
         model = models.Posti
         exclude = ('id', 'user')
@@ -36,11 +34,11 @@ class PostiView(mixins.CreateModelMixin,
     }
 
     def pre_save(self, obj):
-        ip = '127.0.0.1'    # FIXME
+        c = 'trolol'    # FIXME
         try:
-            user = models.Utenti.objects.get(ip_address=ip)
+            user = models.Utenti.objects.get(code=c)
         except models.Utenti.DoesNotExist:
-            user = models.Utenti(ip_address=ip)
+            user = models.Utenti(code=c)
             user.save()
 
         obj.user = user
