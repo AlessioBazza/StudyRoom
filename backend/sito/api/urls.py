@@ -1,8 +1,10 @@
-from django.conf.urls import patterns, url
 from rest_framework import routers
-import restful
+from posti import PostiView
+from aule import AuleView
+from stabili import StabiliView
 
 router = routers.SimpleRouter(trailing_slash=False)
-router.register(r'posti', restful.PostiView)
-router.register(r'aule', restful.AuleView)
+router.register(r'posti', PostiView)
+router.register(r'aule', AuleView)
+router.register(r'stabili', StabiliView)
 urlpatterns = router.urls
