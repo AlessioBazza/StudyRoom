@@ -1,0 +1,22 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    font-family: Roboto;
+    background: #eeeeee;
+}
+
+header{
+    height: 57px;
+    width: 100%;
+    background: #4285f4;
+    box-shadow: 0px 0px 5px #000000;
+}
+
+#container{
+    background: white;
+    width: 70%;
+    height: 300px;
+    box-shadow: 0px 0px 5px #000000;
+    margin: 3% 15% 3% 15%;
+}
