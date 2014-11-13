@@ -33,13 +33,13 @@ class Command(BaseCommand):
             u3 = Utenti(code='ccc')
             u3.save()
 
-            p1 = Posti(posti_liberi=90,user = u2,aula=a4,chaos = True )
+            p1 = Posti(posti_liberi=90,user = u2,aula=a4,chaos = True,lesson=False)
             p1.save()
-            p2 = Posti(posti_liberi=50,user = u3,aula=a8,chaos = False)
+            p2 = Posti(posti_liberi=5,user = u3,aula=a8,chaos = False,lesson=True)
             p2.save()
-            p3 = Posti(posti_liberi=70,user = u1,aula=a2,chaos = True)
+            p3 = Posti(posti_liberi=70,user = u1,aula=a2,chaos = True,lesson=False)
             p3.save()
-            p4 = Posti(posti_liberi=25,user = u2,aula=a3,chaos = False)
+            p4 = Posti(posti_liberi=25,user = u2,aula=a3,chaos = False,lesson=False)
             p4.save()
             
         
