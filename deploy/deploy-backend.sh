@@ -1,12 +1,13 @@
-sudo rm -rf /var/www/backend /var/www/django-static
+sudo supervisorctl stop backend
 
-mkdir /tmp/code
+rm -rf /var/www/backend /var/www/django-static
+
+mkdir /tmp/code /var/www/django-static
 curl -H "Authorization: token ff1cc8bbc1a65f05fc6eca3a8492828d8a604153" \
     -L https://api.github.com/repos/mickfenneck/studyroom/tarball \
     | tar zxvf - --strip-components=1 --directory /tmp/code
 
-sudo mv /tmp/code/backend /var/www/backend
-
+mv /tmp/code/backend /var/www/backend
 cd /var/www/backend && \
     virtualenv . && \
     source bin/activate && \
@@ -18,10 +19,9 @@ cd /var/www/backend/sito && \
     python manage.py populate && \
     python manage.py collectstatic --noinput
 
-
-#sudo cp /tmp/code/deploy/docker-web/web.conf /etc/supervisor/conf.d/
-
 rm -rf /tmp/code
+
+sudo supervisorctl start backend
 
 echo "****************"
 echo "***  make sure to change the default secret key in sito/settings/__init__.py!!!"
