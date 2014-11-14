@@ -5,7 +5,6 @@ SECRET_KEY = 'deeeev'
 DEBUG = True
 TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
-STATIC_URL = '/static/'
 
 DATABASES = {
     'default': {

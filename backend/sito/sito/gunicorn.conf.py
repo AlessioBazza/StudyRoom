@@ -1,8 +1,8 @@
 import multiprocessing
 
-bind = "0.0.0.0:8000"
+bind = "127.0.0.1:8000"
 workers = multiprocessing.cpu_count() * 2 + 1
 worker_class = 'eventlet'
-access_logfile = '-'
-error_logfile = '-'
+access_logfile = '/tmp/gunicorn.access.log'
+error_logfile = '/tmp/gunicorn.error.log'
 

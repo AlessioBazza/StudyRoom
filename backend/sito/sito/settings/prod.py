@@ -5,6 +5,7 @@ from base import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
+STATIC_ROOT = '/var/www/django-static'
 
 DATABASES = {
     'default': {
