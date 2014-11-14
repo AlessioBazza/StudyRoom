@@ -14,7 +14,8 @@ RUN cd /home/user/code/backend/sito && \
 RUN chown -R user:user /home/user/code
 
 RUN mkdir -p /var/log/supervisor
-ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+ADD web.conf /etc/supervisor/conf.d/web.conf
 
 EXPOSE 8000
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisor.conf"]
+VOLUME ["/var/log/supervisor"]
+CMD ["/usr/bin/supervisord", "--nodaemon"]
