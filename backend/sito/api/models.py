@@ -23,6 +23,8 @@ class Posti(models.Model):
         posti_liberi = models.IntegerField()
         user = models.ForeignKey(Utenti)
         aula = models.ForeignKey(Aule)
+        chaos = models.BooleanField(default=False)
+        lesson = models.BooleanField(default=False)
 
         def save(self, *args, **kwargs):
             # TODO abort saving if user has recently voted for the same room

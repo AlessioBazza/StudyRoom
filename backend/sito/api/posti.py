@@ -15,6 +15,8 @@ class SerializerListaPosti(serializers.ModelSerializer):
 class SerializerAggiungiPosti(serializers.ModelSerializer):
     aula = serializers.PrimaryKeyRelatedField()
     posti_liberi = serializers.IntegerField()
+    chaos = serializers.BooleanField()
+    lesson = serializers.BooleanField()
 
     class Meta:
         model = models.Posti
