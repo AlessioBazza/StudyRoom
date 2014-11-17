@@ -85,9 +85,10 @@ class Command(BaseCommand):
             a37.save()
             a38 = Aule(nome='B107',piano=0,dimensione=180,locazione=s)
             a38.save()
-            a41 = Aule(nome='Bibilioteca',piano = -1, dimensione= 300,locazione=s)
+            a41 = Aule(nome='Bibilioteca',piano = -1, dimensione= 100,locazione=s)
             a41.save()
-            
+            a42 = Aule(nome='Bibilioteca',piano = 0, dimensione= 200,locazione=s)
+            a42.save()
             u1 = Utenti(code='aaa')
             u1.save()
             u2 = Utenti(code='bbb')
