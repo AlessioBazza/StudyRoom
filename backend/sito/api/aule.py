@@ -34,7 +34,7 @@ class AuleView(mixins.CreateModelMixin,
 
     default_serializer = SerializerListaAule
     serializer_mapping = {
-        'list': SerializerListaAule,
+        'list': SerializerDettaglioAule,
         'retrieve': SerializerDettaglioAule,
         'update': SerializerAggiungiModificaAule,
         'create': SerializerAggiungiModificaAule,

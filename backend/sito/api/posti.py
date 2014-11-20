@@ -29,10 +29,11 @@ class PostiView(mixins.CreateModelMixin,
 
     queryset = models.Posti.objects.all()
     permission_classes = [permissions.AllowAny, ]
+
+    default_serializer = SerializerAggiungiPosti
     serializer_mapping = {
         'list': SerializerListaPosti,
         'create': SerializerAggiungiPosti,
-
     }
 
     def pre_save(self, obj):
