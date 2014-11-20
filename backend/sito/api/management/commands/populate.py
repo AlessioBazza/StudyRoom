@@ -1,108 +1,33 @@
-from api.models import Stabili, Aule, Utenti, Posti
+from api import models
 from django.core.management.base import BaseCommand, CommandError
+import json
+import os
+import random
 
-class Command(BaseCommand):  
-      def handle(self, *args, **options):
-            s = Stabili(nome='Polo Ferrari')
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        file_dati = os.path.join(os.path.dirname(__file__), 'dati.json')
+        with open(file_dati) as f:
+            dati = json.loads(f.read())
+
+        lista_aule = list()
+        for stabile, aule in dati.iteritems():
+            s = models.Stabili(nome=stabile)
             s.save()
-            a1 = Aule(nome='A101',piano=-1,dimensione=190,locazione=s)
-            a1.save()
-            a2 = Aule(nome='A102',piano=-1,dimensione=126,locazione=s)
-            a2.save()
-            a3 = Aule(nome='A103',piano=-1,dimensione=140,locazione=s)
-            a3.save()
-            a4 = Aule(nome='A104',piano=-1,dimensione=140,locazione=s)
-            a4.save()
-            a5 = Aule(nome='A105',piano=-1,dimensione=140,locazione=s)
-            a5.save()
-            a6 = Aule(nome='A106',piano=-1,dimensione=140,locazione=s)
-            a6.save()
-            a39 = Aule(nome='A107',piano=-1,dimensione=73,locazione=s)
-            a39.save()
-            a40 = Aule(nome='A108',piano=-1,dimensione=73,locazione=s)
-            a40.save()
-            a7 = Aule(nome='AulaStudio',piano=-1,dimensione=50,locazione=s)
-            a7.save()
-            a8 = Aule(nome='PC-A201',piano=0,dimensione=63,locazione=s)
-            a8.save()
-            a9 = Aule(nome='PC-A202',piano=0,dimensione=56,locazione=s)
-            a9.save()
-            a10 = Aule(nome='A203',piano=0,dimensione=68,locazione=s)
-            a10.save()
-            a11 = Aule(nome='A204',piano=0,dimensione=88,locazione=s)
-            a11.save()
-            a12 = Aule(nome='A205',piano=0,dimensione=113,locazione=s)
-            a12.save()
-            a13 = Aule(nome='A206',piano=0,dimensione=131,locazione=s)
-            a13.save()
-            a14 = Aule(nome='A207',piano=0,dimensione=113,locazione=s)
-            a14.save()
-            a15 = Aule(nome='A208',piano=0,dimensione=88,locazione=s)
-            a15.save()
-            a16 = Aule(nome='A209',piano=0,dimensione=53,locazione=s)
-            a16.save()
-            a17 = Aule(nome='A210',piano=0,dimensione=68,locazione=s)
-            a17.save()
-            a18 = Aule(nome='A211',piano=0,dimensione=33,locazione=s)
-            a18.save()
-            a19 = Aule(nome='A212',piano=0,dimensione=53,locazione=s)
-            a19.save()
-            a20 = Aule(nome='A213',piano=0,dimensione=31,locazione=s)
-            a20.save()
-            a21 = Aule(nome='A214',piano=0,dimensione=31,locazione=s)
-            a21.save()
-            a22 = Aule(nome='A215',piano=0,dimensione=30,locazione=s)
-            a22.save()
-            a23 = Aule(nome='A216',piano=0,dimensione=16,locazione=s)
-            a23.save()
-            a24 = Aule(nome='A217',piano=0,dimensione=16,locazione=s)
-            a24.save()
-            a25 = Aule(nome='A218',piano=0,dimensione=30,locazione=s)
-            a25.save()
-            a26 = Aule(nome='A219',piano=0,dimensione=31,locazione=s)
-            a26.save()
-            a27 = Aule(nome='A220',piano=0,dimensione=31,locazione=s)
-            a27.save()
-            a28 = Aule(nome='A221',piano=0,dimensione=53,locazione=s)
-            a28.save()
-            a29 = Aule(nome='A222',piano=0,dimensione=68,locazione=s)
-            a29.save()
-            a30 = Aule(nome='A223',piano=0,dimensione=33,locazione=s)
-            a30.save()
-            a31 = Aule(nome='A224',piano=0,dimensione=53,locazione=s)
-            a31.save()
-            a32 = Aule(nome='B101',piano=-1,dimensione=78,locazione=s)
-            a32.save()
-            a33 = Aule(nome='B102',piano=-1,dimensione=78,locazione=s)
-            a33.save()
-            a34 = Aule(nome='B103',piano=-1,dimensione=78,locazione=s)
-            a34.save()
-            a35 = Aule(nome='B104',piano=-1,dimensione=78,locazione=s)
-            a35.save()
-            a36 = Aule(nome='B105',piano=-1,dimensione=78,locazione=s)
-            a36.save()
-            a37 = Aule(nome='PC-B106',piano=0,dimensione=120,locazione=s)
-            a37.save()
-            a38 = Aule(nome='B107',piano=0,dimensione=180,locazione=s)
-            a38.save()
-            a41 = Aule(nome='Bibilioteca',piano = -1, dimensione= 100,locazione=s)
-            a41.save()
-            a42 = Aule(nome='Bibilioteca',piano = 0, dimensione= 200,locazione=s)
-            a42.save()
-            u1 = Utenti(code='aaa')
-            u1.save()
-            u2 = Utenti(code='bbb')
-            u2.save()
-            u3 = Utenti(code='ccc')
-            u3.save()
 
-            p1 = Posti(posti_liberi=90,user = u2,aula=a4,chaos = True,lesson=False)
-            p1.save()
-            p2 = Posti(posti_liberi=5,user = u3,aula=a8,chaos = False,lesson=True)
-            p2.save()
-            p3 = Posti(posti_liberi=70,user = u1,aula=a2,chaos = True,lesson=False)
-            p3.save()
-            p4 = Posti(posti_liberi=25,user = u2,aula=a3,chaos = False,lesson=False)
-            p4.save()
-            
-        
+            for aula in aule:
+                print 'creazione di', aula['nome']
+                aula['locazione'] = s
+                a = models.Aule(**aula)
+                a.save()
+                lista_aule.append(a)
+
+        models.Posti(posti_liberi=90, user='aa', aula=random.choice(lista_aule),
+                     chaos=True, lesson=False).save()
+        models.Posti(posti_liberi=5, user='bb', aula=random.choice(lista_aule),
+                     chaos=False, lesson=True).save()
+        models.Posti(posti_liberi=70, user='cc', aula=random.choice(lista_aule),
+                     chaos=True, lesson=False).save()
+        models.Posti(posti_liberi=25, user='dd', aula=random.choice(lista_aule),
+                     chaos=False, lesson=False).save()

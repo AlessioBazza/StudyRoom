@@ -1,51 +1,19 @@
-from rest_framework import serializers, mixins, permissions
-from extensions import MultiSerializer
+from rest_framework import serializers, mixins, permissions, viewsets
 import models
 
 
-class SerializerListaPosti(serializers.ModelSerializer):
-    timestamp = serializers.DateTimeField()
-    posti_liberi = serializers.IntegerField()
-
+class SerializerPosti(serializers.ModelSerializer):
     class Meta:
         model = models.Posti
-        exclude = ('id', 'user')
-
-
-class SerializerAggiungiPosti(serializers.ModelSerializer):
-    aula = serializers.PrimaryKeyRelatedField()
-    posti_liberi = serializers.IntegerField()
-    chaos = serializers.BooleanField()
-    lesson = serializers.BooleanField()
-
-    class Meta:
-        model = models.Posti
-        exclude = ('id', 'user', 'timestamp')
 
 
 class PostiView(mixins.CreateModelMixin,
                 mixins.ListModelMixin,
-                MultiSerializer):
+                viewsets.GenericViewSet):
 
     queryset = models.Posti.objects.all()
     permission_classes = [permissions.AllowAny, ]
-
-    default_serializer = SerializerAggiungiPosti
-    serializer_mapping = {
-        'list': SerializerListaPosti,
-        'create': SerializerAggiungiPosti,
-    }
-
-    def pre_save(self, obj):
-        c = 'trolol'    # FIXME
-        try:
-            user = models.Utenti.objects.get(code=c)
-        except models.Utenti.DoesNotExist:
-            user = models.Utenti(code=c)
-            user.save()
-
-        obj.user = user
+    serializer_class = SerializerPosti
 
     def get_queryset(self):
-        # TODO ritornare solo quelli piu' recenti di 30 minuti da ora
-        return models.Posti.objects.all()
+        return models.Posti.get_posti_recenti()

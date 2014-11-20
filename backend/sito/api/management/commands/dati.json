@@ -1,0 +1,214 @@
+{
+    "Polo Ferrari": [
+        {
+            "piano": -1, 
+            "dimensione": 190, 
+            "nome": "A101"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 126, 
+            "nome": "A102"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 140, 
+            "nome": "A103"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 140, 
+            "nome": "A104"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 140, 
+            "nome": "A105"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 140, 
+            "nome": "A106"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 73, 
+            "nome": "A107"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 73, 
+            "nome": "A108"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 50, 
+            "nome": "AulaStudio"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 63, 
+            "nome": "PC-A201"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 56, 
+            "nome": "PC-A202"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 68, 
+            "nome": "A203"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 88, 
+            "nome": "A204"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 113, 
+            "nome": "A205"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 131, 
+            "nome": "A206"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 113, 
+            "nome": "A207"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 88, 
+            "nome": "A208"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 53, 
+            "nome": "A209"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 68, 
+            "nome": "A210"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 33, 
+            "nome": "A211"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 53, 
+            "nome": "A212"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 31, 
+            "nome": "A213"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 31, 
+            "nome": "A214"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 30, 
+            "nome": "A215"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 16, 
+            "nome": "A216"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 16, 
+            "nome": "A217"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 30, 
+            "nome": "A218"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 31, 
+            "nome": "A219"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 31, 
+            "nome": "A220"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 53, 
+            "nome": "A221"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 68, 
+            "nome": "A222"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 33, 
+            "nome": "A223"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 53, 
+            "nome": "A224"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 78, 
+            "nome": "B101"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 78, 
+            "nome": "B102"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 78, 
+            "nome": "B103"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 78, 
+            "nome": "B104"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 78, 
+            "nome": "B105"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 120, 
+            "nome": "PC-B106"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 180, 
+            "nome": "B107"
+        }, 
+        {
+            "piano": -1, 
+            "dimensione": 100, 
+            "nome": "Bibilioteca"
+        }, 
+        {
+            "piano": 0, 
+            "dimensione": 200, 
+            "nome": "Bibilioteca"
+        }
+    ]
+}
