@@ -4,11 +4,22 @@ import models
 
 
 class SerializerAule(serializers.ModelSerializer):
-    posti_set = SerializerPosti(many=True, source='get_posti_recenti')
+    stat = serializers.Field(source='stat')
+    ultimo_aggiornamento = serializers.Field(source='ultimo_aggiornamento')
 
     class Meta:
         model = models.Aule
-        fields = ('nome', 'piano', 'dimensione', 'id', 'posti_set')
+        fields = ('nome', 'piano', 'dimensione', 'stat', 'ultimo_aggiornamento')
+
+
+class SerializerRetrieveAule(serializers.ModelSerializer):
+    stat = serializers.Field(source='stat')
+    ultimo_aggiornamento = serializers.Field(source='ultimo_aggiornamento')
+    posti_set = SerializerPosti(many=True)
+
+    class Meta:
+        model = models.Aule
+        fields = ('nome', 'piano', 'dimensione', 'id', 'stat', 'ultimo_aggiornamento', 'posti_set')
 
 
 class AuleView(mixins.ListModelMixin,
@@ -17,3 +28,6 @@ class AuleView(mixins.ListModelMixin,
 
     queryset = models.Aule.objects.all()
     serializer_class = SerializerAule
+
+    def get_serializer_class(self):
+        return SerializerRetrieveAule if self.action == 'retrieve' else SerializerAule

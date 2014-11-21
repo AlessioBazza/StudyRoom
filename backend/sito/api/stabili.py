@@ -5,7 +5,6 @@ import models
 class SerializerStabili(serializers.ModelSerializer):
     class Meta:
         model = models.Stabili
-        fields = ('id', 'nome', 'aule_set',)
 
 
 class StabiliView(mixins.ListModelMixin,

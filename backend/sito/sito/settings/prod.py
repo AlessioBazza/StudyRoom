@@ -1,12 +1,13 @@
 from base import *
 
-# set this in __init__.py
+# set thes in __init__.py
 # SECRET_KEY = ...
+# DATABASES = { ... }
 
 DEBUG = False
 TEMPLATE_DEBUG = False
 STATIC_ROOT = '/var/www/django-static'
-ALLOWED_HOSTS = [ 'studyroom.noip.me', ]
+ALLOWED_HOSTS = ['studyroom.noip.me']
 
 DATABASES = {
     'default': {
