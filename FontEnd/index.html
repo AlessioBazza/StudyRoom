@@ -11,28 +11,82 @@
     <title>StudyRoom</title>
     
     <!-- Style -->
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- CSS Filippo -->
-    <link href="css/general.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+        <!-- Bootstrap -->
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- CSS Filippo -->
+            <link href="css/material-wfont.min.css" rel="stylesheet">
+            <link href="css/general.css" rel="stylesheet">
+            <link href="css/style.css" rel="stylesheet">
     
     <!-- Script -->
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- BootStrap -->
-    <script src="js/bootstrap.min.js"></script>
-    
+            <script src="js/material.js"></script>
+        <!-- jQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- BootStrap -->
+            <script src="js/bootstrap.min.js"></script>
+        <!-- MiniTemplate -->
+            <script src="js/minitemplate.js"></script>
     </head>
 <body>
     
-    <header>
-        <div class="titleHeader">StudyRoom</div>
-    </header>
-    
-    <div id="container">
-        <div id="room"></div>
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">StudyRoom</a>
+        </div>
+        <!-- NAVBAR EXTEND
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">Action</a></li>
+                        <li><a href="javascript:void(0)">Another action</a></li>
+                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li><a href="javascript:void(0)">Separated link</a></li>
+                        <li><a href="javascript:void(0)">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> -->
     </div>
     
+    <div id="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Piano: -1</h3>
+            </div>
+            <!-- CONTENUTO -->
+            <div class="list-group">
+                <div class="list-group-separator"></div>
+                <div class="list-group-item">
+                    <div class="row-picture">
+                        <img class="circle" src="http://www.zoosafari.it/wp-content/uploads/2013/10/o-VERDE-facebook.jpg" alt="icon">
+                    </div>
+                    <div class="row-content">
+                        <h4 class="list-group-item-heading">A102</h4>
+                        <p class="list-group-item-text">Free: 80% / 140   Last update 1h</p>
+                    </div>
+                </div>
+                <div class="list-group-separator"></div>
+                <div class="list-group-item">
+                    <div class="row-picture">
+                        <img class="circle" src="http://www.zoosafari.it/wp-content/uploads/2013/10/o-VERDE-facebook.jpg" alt="icon">
+                    </div>
+                    <div class="row-content">
+                        <h4 class="list-group-item-heading">A103</h4>
+                        <p class="list-group-item-text">Free: 80% / 140   Last update 1h</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
     </body>
     </html>
