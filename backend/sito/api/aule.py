@@ -9,7 +9,7 @@ class SerializerAule(serializers.ModelSerializer):
 
     class Meta:
         model = models.Aule
-        fields = ('nome', 'piano', 'dimensione', 'stat', 'ultimo_aggiornamento')
+        fields = ('id', 'nome', 'piano', 'dimensione', 'stat', 'ultimo_aggiornamento')
 
 
 class SerializerRetrieveAule(serializers.ModelSerializer):

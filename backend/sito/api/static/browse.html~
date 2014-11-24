@@ -1,0 +1,101 @@
+<html>
+<head>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+// Simple JavaScript Templating
+// John Resig - http://ejohn.org/ - MIT Licensed
+(function(){
+  var cache = {};
+ 
+  this.tmpl = function tmpl(str, data){
+    // Figure out if we're getting a template, or if we need to
+    // load the template - and be sure to cache the result.
+    var fn = !/\W/.test(str) ?
+      cache[str] = cache[str] ||
+        tmpl(document.getElementById(str).innerHTML) :
+     
+      // Generate a reusable function that will serve as a template
+      // generator (and which will be cached).
+      new Function("obj",
+        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+       
+        // Introduce the data as local variables using with(){}
+        "with(obj){p.push('" +
+       
+        // Convert the template into pure JavaScript
+        str
+          .replace(/[\r\t\n]/g, " ")
+          .split("<%").join("\t")
+          .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+          .replace(/\t=(.*?)%>/g, "',$1,'")
+          .split("\t").join("');")
+          .split("%>").join("p.push('")
+          .split("\r").join("\\'")
+      + "');}return p.join('');");
+   
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+  };
+})();
+</script>
+
+<script>
+function loaddata() {
+    $.get('http://localhost:8000/api/aule?format=json',
+        function(x) {
+            data = x
+            $('#content').html(tmpl('template_aula', data));
+        });
+}
+
+function submit_posti(aula_id) {
+    posti = parseInt($('#report-' + aula_id).val());
+    
+    if(isNaN(posti)) {
+        alert('Inserisci un numero intero!');
+    }
+    else {
+        $.post('http://localhost:8000/api/posti', {
+            posti_liberi: posti,
+            user: 'io',
+            aula: aula_id,
+            chaos: posti > 50,
+            lesson: false
+        }, function(resp) {
+            alert('posted');
+            loaddata();
+        });
+    }
+}
+
+$(document).ready(function() {
+    loaddata();
+});
+
+</script>
+
+<script type="text/html" id="template_aula">
+    <% for(var i = 0; i < data.length; i++) { %>
+        <div style="padding:10px;margin:5px 0px 5px 0px;border:1px solid gray;" id="<%= data[i].id %>">
+            <ul>
+                <li><b>nome:</b><%= data[i].nome %></li>
+                <li><b>ultimo aggiornamento:</b><%= data[i].ultimo_aggiornamento || "mai" %></li>
+                <li><b>media posti:</b><%= data[i].stat.media || "-" %></li>
+            </ul>
+            
+            <b>Report:</b>
+            <input type="text" id="report-<%= data[i].id %>" value=""></input>
+            <a href="#" onclick="submit_posti(<%= data[i].id %>);">Submit</a>
+        </div>
+    <% } %>
+</script>
+
+</head>
+
+<body>
+    <div style="margin:auto;border:2px solid black;padding:10px;" id="content">
+    
+    </div>
+</body>
+<html>
