@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Filippo Benozzi, Michele Sordo, Christian Joppi, Emilio Dorigatti, Matilde Leso, Luisa Zurlo, Karin Severgnani">
+    
+    <title>StudyRoom</title>
+    
+    <!-- Style -->
+        <!-- Bootstrap -->
+            <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- CSS Filippo -->
+            <link href="css/material-wfont.min.css" rel="stylesheet">
+            <link href="css/general.css" rel="stylesheet">
+            <link href="css/style.css" rel="stylesheet">
+    
+    <!-- Script -->
+        <!-- MyScript -->
+            <script src="js/material.js"></script>
+            <script src="js/hidemenu.js"></script>
+        <!-- jQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- BootStrap -->
+            <script src="js/bootstrap.min.js"></script>
+        <!-- MiniTemplate -->
+            <script src="js/minitemplate.js"></script>
+    
+        <!-- ImportDati -->
+            <script>
+                function loaddata() {
+                    $.get('http://localhost:8000/api/aule?format=json',
+                          function(x) {
+                        data = x
+                        $('#content').html(tmpl('template_aula', data));
+                    });
+                }
+
+                function submit_posti(aula_id) {
+                    posti = parseInt($('#report-' + aula_id).val());
+
+                    if(isNaN(posti)) {
+                        alert('Inserisci un numero intero!');
+                    }
+                    else {
+                        $.post('http://localhost:8000/api/posti', {
+                            posti_liberi: posti,
+                            user: 'io',
+                            aula: aula_id,
+                            chaos: posti > 50,
+                            lesson: false
+                        }, function(resp) {
+                            alert('posted');
+                            loaddata();
+                        });
+                    }
+                }
+
+                $(document).ready(function() {
+                    loaddata();
+                });
+
+            </script>
+    </head>
+<body>
+    
+    <div class="navbar navbar-default">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0)">StudyRoom</a>
+        </div>
+        <!-- NavBar
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(0)">Action</a></li>
+                        <li><a href="javascript:void(0)">Another action</a></li>
+                        <li><a href="javascript:void(0)">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li><a href="javascript:void(0)">Separated link</a></li>
+                        <li><a href="javascript:void(0)">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div> -->
+    </div>
+    
+    <div id="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Piano: -1</h3>
+            </div>
+            <div class="list-group">
+                <div class="list-group-separator"></div>                
+    
+                <script type="text/html" id="template_aula">
+                        <% for(var i = 0; i < data.length; i++) { %>
+                    <div class="containerItem">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="img/green.jpg" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
+                                <p class="list-group-item-text">Free: <%= data[i].stat.media || "-" %> / 140   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                            </div>
+                        </div>
+                                <div class="stat">
+                                <div style="padding:10px;margin:5px 0px 5px 0px;border:1px solid gray;" id="<%= data[i].id %>">
+                                    <ul>
+                                        <li><b>nome:</b><%= data[i].nome %></li>
+                                        <li><b>ultimo aggiornamento:</b><%= data[i].ultimo_aggiornamento || "mai" %></li>
+                                        <li><b>media posti:</b><%= data[i].stat.media || "-" %></li>
+                                    </ul>
+
+                                    <b>Report:</b>
+                                    <input type="text" id="report-<%= data[i].id %>" value=""></input>
+                                <a href="#" onclick="submit_posti(<%= data[i].id %>);">Submit</a>
+                                </div>
+                            </div>
+                    </div>
+                </script>
+            </div>   
+        </div>
+    </div>
+</body>
+</html>
