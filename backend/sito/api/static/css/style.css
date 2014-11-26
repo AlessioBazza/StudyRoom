@@ -19,11 +19,34 @@
     font-style:normal;
 }
 
-.titleMenu{
-    font-size: 18px;
-    font-weight: bold;
-    letter-spacing: 1%;
+.displayItem{
+    margin-top: 10px;
 }
 
-.inserimentoDati{
+.titleItem{
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline;
+}
+
+.subtitleItem{
+    line-height: 1px;
+    display: inline;
+    color: rgba(0,0,0,0.4);
+}
+
+.statText{
+    font-size: 1.3em;
+    line-height: 20px;
+}
+
+.statTitle{
+    font-size: 1.3em;
+    line-height: 15px;
+    font-weight: bold;
+}
+
+.statSubTitle{
+    color: rgba(0,0,0,0.4);
+    line-height: 10px;
 }

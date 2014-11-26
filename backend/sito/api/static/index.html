@@ -21,47 +21,53 @@
     <!-- Script -->
         <!-- jQuery -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- MyScript -->
+        <!-- Material -->
             <script src="js/material.js"></script>
-            <script src="js/hidemenu.js"></script>
         <!-- BootStrap -->
             <script src="js/bootstrap.min.js"></script>
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
             <script src="js/importdb.js"></script>
+            <script src="js/hidemenu.js"></script>
 
-<script type="text/javascript">
-function nomeImmagine(aula) {
-    if(aula.stat == null) return "img/default.jpg";
-    else {
-        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
-        var ghetto = aula.stat.ghetto > 0.5 ? "ghetto" : "noghetto";
-        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
-        var posti = posti_perc < 0.25 ? "empty" : posti_perc < 0.75 ? "medium" : "full";
-        return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
-    }
-}
-</script>
+            <script type="text/javascript">
+            function nomeImmagine(aula) {
+                if(aula.stat == null) return "img/default.jpg";
+                else {
+                    var posti_perc = aula.stat.posti_liberi / aula.dimensione;
+                    var ghetto = aula.stat.ghetto > 0.5 ? "ghetto" : "noghetto";
+                    var lesson = aula.stat.lesson ? "lesson" : "nolesson";
+                    var posti = posti_perc < 0.25 ? "empty" : posti_perc < 0.75 ? "medium" : "full";
+                    return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+                }
+            }
+            </script>
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
                 <div class="containerItem">
                     <div class="list-group-item">
                         <div class="row-picture">
-                            <img src=" <%= nomeImmagine(data[i]) %>">
+                            <img class="circle" src=" <%= nomeImmagine(data[i]) %>">
                         </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
-                                <p class="list-group-item-text">Occupati:  <%= data[i].stat ? data[i].stat.posti_liberi : "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                        <div class="row-content displayItem">
+                            <p class="titleItem"><%= data[i].nome %></p>
+                            <p class="subtitleItem">Busy:  <%= data[i].stat ? data[i].stat.posti_liberi : "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
                         </div>
                     </div>
                     <!-- STAT INTERNE -->
-                    <div class="inserimentoDati">
-                        <center>
-                        <b>Report:</b>
-                        <input type="text" id="report-<%= data[i].id %>" value=""></input>
-                        <a href="#" onclick="submit_posti(<%= data[i].id %>);">Submit</a>
-                        </center>
+                        <div id="inserimentoDati">
+                        <div id="statRight">
+                            <p class="statText"><b>Busy seats:</b> <%= data[i].stat ? data[i].stat.posti_liberi : "-" %></p>
+                            <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
+                            <p class="statText"><b>Last update:</b> <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                        </div>
+                        <div id="statLeft">
+                            <p class="statTitle">How many seats busy?</p>
+                            <p class="statSubTitle">Scrivere limonare duro.</p>
+                            <input type="text" id="report-<%= data[i].id %>" value=""></input><br>
+                            <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
+                        </div>
                     </div>
                 </div>
                 <% } %>   

@@ -1,9 +1,5 @@
-var main = function(){
-    $('.inserimentoDati').hide(); 
-};
-
-$(document).ready(function(){
-    $('.inserimentoDati').hide(); 
-
-
+$(document).ready(function() {
+    $('.list-group-item').click(function() {
+        $('#inserimentoDati').slideToggle("fast");
+    });
 });

@@ -23,6 +23,22 @@ header{
     width: 100%;
 }
 
+#statRight{
+    float: left;
+    width: 49%;
+    height: 150px;
+    text-align: right;
+    margin-right: 1%;
+}
+
+#statLeft{
+    float: left;
+    width: 49%;
+    height: 150px;
+    text-align: left;
+    margin-left: 1%;
+}
+
 /* Media */
 @media only screen and (max-width: 1024px){
     #container{
