@@ -19,30 +19,28 @@
             <link href="css/style.css" rel="stylesheet">
     
     <!-- Script -->
+        <!-- jQuery -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- MyScript -->
             <script src="js/material.js"></script>
             <script src="js/hidemenu.js"></script>
-        <!-- jQuery -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- BootStrap -->
             <script src="js/bootstrap.min.js"></script>
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
             <script src="js/importdb.js"></script>
-<!--
 <script type="text/javascript">
 function nomeImmagine(aula) {
- if(aula.ultimo_aggiornamento == null) return "img/default.jpg";
- else {
-  var posti_perc = aula.ultimo_aggiornamento.posti / aula.dimensione;
-  var chaos = aula.ultimo_aggiornamento.chaos ? "chaos" : "nochaos";
-  var lesson = aula.ultimo_aggiornamento.lesson ? "lesson" : "nolesson";
-  var posti = posti_perc < 25 ? "empty" : posti_perc < 75 ? "medium" : "full";
-  return "img/" + chaos + "_" + lesson + "_" + posti + ".jpg";
- }
+    if(aula.stat == null) return "img/default.jpg";
+    else {
+        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
+        var ghetto = aula.stat.ghetto > 0.5 ? "ghetto" : "noghetto";
+        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
+        var posti = posti_perc < 0.25 ? "empty" : posti_perc < 0.75 ? "medium" : "full";
+        return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+    }
 }
 </script>
--->
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
@@ -54,7 +52,7 @@ function nomeImmagine(aula) {
                         </div>
                         <div class="row-content">
                             <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
-                                <p class="list-group-item-text">Occupati:  <%= data[i].stat.media || "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                                <p class="list-group-item-text">Occupati:  <%= data[i].stat ? data[i].stat.posti_liberi : "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
                         </div>
                     </div>
                 <% } %>
