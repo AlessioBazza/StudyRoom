@@ -29,7 +29,7 @@
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
             <script src="js/importdb.js"></script>
-
+<!--
 <script type="text/javascript">
 function nomeImmagine(aula) {
  if(aula.ultimo_aggiornamento == null) return "img/default.jpg";
@@ -42,14 +42,14 @@ function nomeImmagine(aula) {
  }
 }
 </script>
-
+-->
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
                 <div class="containerItem">
                     <div class="list-group-item">
                         <div class="row-picture">
-                            <!-- <img class="circle" src="img/green.jpg" alt="icon"> -->
+                            <img class="circle" src="img/green.jpg" alt="icon">
 <p> <%= nomeImmagine(data[i]) %> </p>
                         </div>
                         <div class="row-content">
