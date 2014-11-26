@@ -19,6 +19,7 @@ cd /var/www/backend/sito && \
     /var/www/backend/bin/python manage.py collectstatic --noinput
 
 rm -rf /tmp/code
+chown -R ubuntu:ubuntu /var/www/backend
 
 supervisorctl start backend
 

@@ -33,13 +33,24 @@ class Aule(models.Model):
 
     def stat(self, interval=settings.POSTI_DISPLAY_INTERVAL):
         """
-        Ritorna la media dei posti liberi calcolate sulle segnalazioni piu'
-        recenti di adesso - intervallo
+        Ritorna delle statistiche calcolate sulla base dei report piu'
+        recenti di adesso - intervallo o None se non ci sono report
         """
         # TODO inserire anche la deviazione standard?
-        stat = self.get_posti_recenti(interval).aggregate(media=models.Avg('posti_liberi'),
-                                                          numero=models.Count('id'))
-        stat['interval'] = interval
+        recenti = self.get_posti_recenti(interval)
+        numero = recenti.count()
+
+        if numero > 0:
+            stat = {
+                'numero': recenti.count(),
+                'ghetto': recenti.filter(chaos=True).count() / float(numero),
+                'lesson': recenti.filter(lesson=True).count() / float(numero),
+                'interval': interval,
+            }
+            stat.update(recenti.aggregate(posti_liberi=models.Avg('posti_liberi')))
+        else:
+            stat = None
+
         return stat
 
     def __unicode__(self):
