@@ -21,7 +21,6 @@
     <!-- Script -->
         <!-- MyScript -->
             <script src="js/material.js"></script>
-            <script src="js/hidemenu.js"></script>
         <!-- jQuery -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <!-- BootStrap -->
@@ -29,40 +28,47 @@
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
             <script src="js/importdb.js"></script>
-<!--
-<script type="text/javascript">
-function nomeImmagine(aula) {
- if(aula.ultimo_aggiornamento == null) return "img/default.jpg";
- else {
-  var posti_perc = aula.ultimo_aggiornamento.posti / aula.dimensione;
-  var chaos = aula.ultimo_aggiornamento.chaos ? "chaos" : "nochaos";
-  var lesson = aula.ultimo_aggiornamento.lesson ? "lesson" : "nolesson";
-  var posti = posti_perc < 25 ? "empty" : posti_perc < 75 ? "medium" : "full";
-  return "img/" + chaos + "_" + lesson + "_" + posti + ".jpg";
- }
-}
-</script>
--->
+
+            <script type="text/javascript">
+                function nomeImmagine(aula) {
+                 if(aula.ultimo_aggiornamento == null) return "img/default.jpg";
+                 else {
+                  var posti_perc = aula.ultimo_aggiornamento.posti / aula.dimensione;
+                  var chaos = aula.ultimo_aggiornamento.chaos ? "chaos" : "nochaos";
+                  var lesson = aula.ultimo_aggiornamento.lesson ? "lesson" : "nolesson";
+                  var posti = posti_perc < 25 ? "empty" : posti_perc < 75 ? "medium" : "full";
+                  return "img/" + chaos + "_" + lesson + "_" + posti + ".jpg";
+                 }
+                }
+            </script>
+
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
                 <div class="containerItem">
                     <div class="list-group-item">
                         <div class="row-picture">
-                            <img class="circle" src="img/green.jpg" alt="icon">
-<p> <%= nomeImmagine(data[i]) %> </p>
+                            <img src=" <%= nomeImmagine(data[i]) %>">
                         </div>
                         <div class="row-content">
-                            <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
-                                <p class="list-group-item-text">Occupati:  <%= data[i].stat.media || "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                            <h4 class="list-group-item-heading titleMenu"><%= data[i].nome %></h4>
+                                <p class="list-group-item-text">Occupati:  <%= data[i].posti_liberi || "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
                         </div>
                     </div>
-                <% } %>
+                    <!-- STAT INTERNE -->
+                    <div class="inserimentoDati">
+                        <center>
+                        <b>Report:</b>
+                        <input type="text" id="report-<%= data[i].id %>" value=""></input>
+                        <a href="#" onclick="submit_posti(<%= data[i].id %>);">Submit</a>
+                        </center>
+                    </div>
+                </div>
+                <% } %>   
             </script>
-<!-- FINE_SCRIPT -->
+            <script src="js/hidemenu.js"></script>
     </head>
 <body>
-    
     <div class="navbar navbar-default">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -99,6 +105,7 @@ function nomeImmagine(aula) {
             <div class="list-group">
                 <!-- CONTENUTO -->
                 </div>
-            </div>
+        </div>
+    </div>
 </body>
 </html>

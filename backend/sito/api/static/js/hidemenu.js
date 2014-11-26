@@ -1,9 +1,9 @@
 var main = function(){
-    $('.stat').hide();
-    $('.containerItem').click(function(){
-        $('.stat').hide();
-        $(this).children('.stat').show();
-    }); 
+    $('.inserimentoDati').hide(); 
 };
 
-$(document).ready(main);
+$(document).ready(function(){
+    $('.inserimentoDati').hide(); 
+
+
+});
