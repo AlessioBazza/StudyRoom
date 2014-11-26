@@ -28,42 +28,38 @@
             <script src="js/bootstrap.min.js"></script>
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
-    
-        <!-- ImportDati -->
-            <script>
-                function loaddata() {
-                    $.get('http://localhost:8000/api/aule?format=json',
-                          function(x) {
-                        data = x
-                        $('#content').html(tmpl('template_aula', data));
-                    });
-                }
+            <script src="js/importdb.js"></script>
 
-                function submit_posti(aula_id) {
-                    posti = parseInt($('#report-' + aula_id).val());
+<script type="text/javascript">
+function nomeImmagine(aula) {
+ if(aula.ultimo_aggiornamento == null) return "img/default.jpg";
+ else {
+  var posti_perc = aula.ultimo_aggiornamento.posti / aula.dimensione;
+  var chaos = aula.ultimo_aggiornamento.chaos ? "chaos" : "nochaos";
+  var lesson = aula.ultimo_aggiornamento.lesson ? "lesson" : "nolesson";
+  var posti = posti_perc < 25 ? "empty" : posti_perc < 75 ? "medium" : "full";
+  return "img/" + chaos + "_" + lesson + "_" + posti + ".jpg";
+ }
+}
+</script>
 
-                    if(isNaN(posti)) {
-                        alert('Inserisci un numero intero!');
-                    }
-                    else {
-                        $.post('http://localhost:8000/api/posti', {
-                            posti_liberi: posti,
-                            user: 'io',
-                            aula: aula_id,
-                            chaos: posti > 50,
-                            lesson: false
-                        }, function(resp) {
-                            alert('posted');
-                            loaddata();
-                        });
-                    }
-                }
-
-                $(document).ready(function() {
-                    loaddata();
-                });
-
+            <script type="text/html" id="template_aula">
+                <% for(var i = 0; i < data.length; i++) { %>
+                <div class="list-group-separator"></div>
+                <div class="containerItem">
+                    <div class="list-group-item">
+                        <div class="row-picture">
+                            <!-- <img class="circle" src="img/green.jpg" alt="icon"> -->
+<p> <%= nomeImmagine(data[i]) %> </p>
+                        </div>
+                        <div class="row-content">
+                            <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
+                                <p class="list-group-item-text">Occupati:  <%= data[i].stat.media || "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                        </div>
+                    </div>
+                <% } %>
             </script>
+<!-- FINE_SCRIPT -->
     </head>
 <body>
     
@@ -101,37 +97,8 @@
                 <h3 class="panel-title">Piano: -1</h3>
             </div>
             <div class="list-group">
-                <div class="list-group-separator"></div>                
-    
-                <script type="text/html" id="template_aula">
-                        <% for(var i = 0; i < data.length; i++) { %>
-                    <div class="containerItem">
-                        <div class="list-group-item">
-                            <div class="row-picture">
-                                <img class="circle" src="img/green.jpg" alt="icon">
-                            </div>
-                            <div class="row-content">
-                                <h4 class="list-group-item-heading"><%= data[i].nome %></h4>
-                                <p class="list-group-item-text">Free: <%= data[i].stat.media || "-" %> / 140   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
-                            </div>
-                        </div>
-                                <div class="stat">
-                                <div style="padding:10px;margin:5px 0px 5px 0px;border:1px solid gray;" id="<%= data[i].id %>">
-                                    <ul>
-                                        <li><b>nome:</b><%= data[i].nome %></li>
-                                        <li><b>ultimo aggiornamento:</b><%= data[i].ultimo_aggiornamento || "mai" %></li>
-                                        <li><b>media posti:</b><%= data[i].stat.media || "-" %></li>
-                                    </ul>
-
-                                    <b>Report:</b>
-                                    <input type="text" id="report-<%= data[i].id %>" value=""></input>
-                                <a href="#" onclick="submit_posti(<%= data[i].id %>);">Submit</a>
-                                </div>
-                            </div>
-                    </div>
-                </script>
-            </div>   
-        </div>
-    </div>
+                <!-- CONTENUTO -->
+                </div>
+            </div>
 </body>
 </html>
