@@ -67,8 +67,8 @@ class Aule(models.Model):
         if numero > 0:
             stat = {
                 'numero': recenti.count(),
-                'ghetto': recenti.filter(chaos=True).count() / float(numero),
-                'lesson': recenti.filter(lesson=True).count() / float(numero),
+                'ghetto': 100 * recenti.filter(chaos=True).count() / float(numero),
+                'lesson': 100 * recenti.filter(lesson=True).count() / float(numero),
                 'interval': interval,
             }
             stat.update(recenti.aggregate(posti_liberi=models.Avg('posti_liberi')))
