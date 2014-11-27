@@ -1,6 +1,30 @@
 from django.db import models
 from datetime import datetime
 from sito import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+
+class IntegerRangeField(models.IntegerField):
+    def __init__(self, verbose_name=None, name=None, min_value=None, max_value=None, **kwargs):
+        self.min_value, self.max_value = min_value, max_value
+        validators = []
+        if isinstance(max_value, int):
+            validators.append(MaxValueValidator(max_value))
+        if isinstance(min_value, int):
+            validators.append(MinValueValidator(min_value))
+
+        models.IntegerField.__init__(
+            self,
+            verbose_name,
+            name,
+            validators=validators,
+            **kwargs
+        )
+
+    def formfield(self, **kwargs):
+        defaults = {'min_value': self.min_value, 'max_value':self.max_value}
+        defaults.update(kwargs)
+        return super(IntegerRangeField, self).formfield(**defaults)
 
 
 class Stabili(models.Model):
@@ -62,7 +86,7 @@ class Posti(models.Model):
         ordering = ['-timestamp']
 
     timestamp = models.DateTimeField(auto_now=True)
-    posti_liberi = models.IntegerField()
+    posti_liberi = IntegerRangeField(min_value=0, max_value=100)
     user = models.CharField(max_length=50)
     aula = models.ForeignKey(Aule)
     chaos = models.BooleanField(default=False)
