@@ -5,7 +5,7 @@ function loaddata() {
         
         $(".statSlider").ionRangeSlider({
             hide_min_max: true,
-            keyboard: true,
+            keyboard: false,
             min: 0,
             max: 100,
             step: 1,
