@@ -56,7 +56,7 @@
                         </div>
                         <div class="row-content displayItem">
                             <p class="titleItem"><%= data[i].nome %></p>
-                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= Date(data[i].ultimo_aggiornamento) || "More than 2h ago" %></p>
+                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "More than 2h ago" %></p>
                         </div>
                     </div>
                     <!-- STAT INTERNE -->
@@ -64,7 +64,7 @@
                         <div id="statLeft">
                             <p class="statText"><b>Busy seats:</b> <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>%</p>
                             <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
-                            <p class="statTextDate"><b>Last update:</b> <%= Date(data[i].ultimo_aggiornamento) || "More than 2h ago" %></p>
+                            <p class="statTextDate"><b>Last update:</b> <%= Date(data[i].ultimo_aggiornamento).substring(15,21) || "More than 2h ago" %></p>
                         </div>
                         <div id="statRight">
                             <p class="statTitle">How many seats busy?</p>
@@ -72,10 +72,10 @@
                             <input type="text" class="statSlider" readonly="readonly" id="report-<%= data[i].id %>" name="value_slider" value="" />
                             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
                             <div class="checkbox">
-                                <label><input type="checkbox" id="ghetto-<%= data[i].id %>"><span class="ripple"></span><span class="check"></span>Ghetto</label>
+                                <label><input id="ghetto-<%= data[i].id %>" type="checkbox"><span class="ripple"></span><span class="check"></span>Ghetto</label>
                             </div>
                             <div class="checkbox">
-                                <label><input type="checkbox" id="lesson-<%= data[i].id %>"><span class="ripple"></span><span class="check"></span>Lesson</label>
+                                <label><input id="lesson-<%= data[i].id %>" type="checkbox"><span class="ripple"></span><span class="check"></span>Lesson</label>
                             </div>
                         </div>
                     </div>

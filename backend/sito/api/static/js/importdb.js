@@ -18,8 +18,8 @@ function loaddata() {
 
 function submit_posti(aula_id) {
     posti = parseInt($('#report-' + aula_id).val());
-    lesson = parseInt($('#lesson-' + aula_id).val());
-    ghetto = parseInt($('#ghetto-' + aula_id).val());
+    lesson = $('#lesson-' + aula_id).is(':checked');
+    ghetto = $('#ghetto-' + aula_id).is(':checked');
      
         $.post('/api/posti', {
             posti_liberi: posti,
