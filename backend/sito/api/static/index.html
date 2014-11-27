@@ -46,19 +46,6 @@
                 }
             }
             </script>
-            <script>
-                $(function () {
-                    $("#statSlider").ionRangeSlider({
-                        hide_min_max: true,
-                        keyboard: true,
-                        min: 0,
-                        max: 100,
-                        step: 25,
-                        prefix: "%",
-                        grid: true
-                    });
-                });
-            </script>
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
@@ -82,8 +69,8 @@
                         <div id="statLeft">
                             <p class="statTitle">How many seats busy?</p>
                             <p class="statSubTitle">Scrivere limonare duro.</p>
-                            <input type="text" id="statSlider report-<%= data[i].id %>" name="value_slider" value="" /><br>
-                            <input type="text" id="report-<%= data[i].id %>" value=""></input><br>
+                            <input type="text" class="statSlider" id="report-<%= data[i].id %>" name="value_slider" value="" /><br>
+                            
                             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
                         </div>
                     </div>
@@ -125,7 +112,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Piano: -1</h3>
             </div>
-            <input type="text" id="statSlider" name="value_slider" value="" /><br>
+            
             <div class="list-group">
                 <!-- CONTENUTO -->
                 </div>

@@ -1,8 +1,17 @@
 function loaddata() {
-    $.get('/api/aule?format=json',
-          function(x) {
+    $.get('/api/aule?format=json', function(x) {
         data = x
         $('.list-group').html(tmpl('template_aula', data));
+        
+        $(".statSlider").ionRangeSlider({
+            hide_min_max: true,
+            keyboard: true,
+            min: 0,
+            max: 100,
+            step: 25,
+            prefix: "%",
+            grid: true
+        });
     });
 }
 
