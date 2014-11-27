@@ -47,9 +47,23 @@ header{
     }
 }
 
-@media only screen and (max-width: 450px){
+@media only screen and (max-width: 600px){
     #container{
         width: 100%;
         margin: 0% 0% 0% 0%;
+    }
+    #statRight{
+        float: left;
+        width: 100%;
+        text-align: center;
+        padding-right: 7%;
+        padding-left: 7%;
+    }
+
+    #statLeft{
+        float: left;
+        width: 100%;
+        text-align: center;
+        padding-top: 20px;
     }
 }
