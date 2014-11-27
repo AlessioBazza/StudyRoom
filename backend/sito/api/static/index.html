@@ -13,13 +13,13 @@
     <!-- Style -->
         <!-- Bootstrap -->
             <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Slider -->
+            <link href="css/ion.rangeSlider.css" rel="stylesheet">
+            <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
         <!-- CSS Filippo -->
             <link href="css/material-wfont.min.css" rel="stylesheet">
             <link href="css/general.css" rel="stylesheet">
             <link href="css/style.css" rel="stylesheet">
-        <!-- Slider -->
-            <link href="css/ion.rangeSlider.css" rel="stylesheet">
-            <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
     
     <!-- Script -->
         <!-- jQuery -->
@@ -39,9 +39,9 @@
                 if(aula.stat == null) return "img/default.jpg";
                 else {
                     var posti_perc = aula.stat.posti_liberi / aula.dimensione;
-                    var ghetto = aula.stat.ghetto > 0.5 ? "ghetto" : "noghetto";
+                    var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
                     var lesson = aula.stat.lesson ? "lesson" : "nolesson";
-                    var posti = posti_perc < 0.25 ? "empty" : posti_perc < 0.75 ? "medium" : "full";
+                    var posti = aula.stat.posti_liberi < 40 ? "empty" : aula.stat.posti_liberi < 75 ? "medium" : "full";
                     return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
                 }
             }
@@ -50,28 +50,28 @@
                 <% for(var i = 0; i < data.length; i++) { %>
                 <div class="list-group-separator"></div>
                 <div class="containerItem">
-                    <div class="list-group-item">
+                    <div class="list-group-item" onclick="$('#statContainer-<%= data[i].id %>').toggle();">
                         <div class="row-picture">
-                            <img class="circle" src=" <%= nomeImmagine(data[i]) %>">
+                            <img class="circle" src="<%= nomeImmagine(data[i]) %>">
                         </div>
                         <div class="row-content displayItem">
                             <p class="titleItem"><%= data[i].nome %></p>
-                            <p class="subtitleItem">Busy:  <%= data[i].stat ? data[i].stat.posti_liberi : "-" %> / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento || "mai" %></p>
+                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= Date(data[i].ultimo_aggiornamento) || "More than 2h ago" %></p>
                         </div>
                     </div>
                     <!-- STAT INTERNE -->
-                        <div id="inserimentoDati">
-                        <div id="statRight">
-                            <p class="statText"><b>Busy seats:</b> <%= data[i].stat ? data[i].stat.posti_liberi : "-" %></p>
-                            <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
-                            <p class="statText"><b>Last update:</b> <%= data[i].ultimo_aggiornamento || "mai" %></p>
-                        </div>
+                        <div class="statContainer" id="statContainer-<%= data[i].id %>">
                         <div id="statLeft">
+                            <p class="statText"><b>Busy seats:</b> <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>%</p>
+                            <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
+                            <p class="statTextDate"><b>Last update:</b> <%= Date(data[i].ultimo_aggiornamento) || "More than 2h ago" %></p>
+                        </div>
+                        <div id="statRight">
                             <p class="statTitle">How many seats busy?</p>
-                            <p class="statSubTitle">Scrivere limonare duro.</p>
-                            <input type="text" class="statSlider" id="report-<%= data[i].id %>" name="value_slider" value="" /><br>
-                            
+                            <p class="statSubTitle">Estimate seats in %.</p>
+                            <input type="text" class="statSlider" id="report-<%= data[i].id %>" name="value_slider" value="" />
                             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
+                            <!-- Toggle -->
                         </div>
                     </div>
                 </div>

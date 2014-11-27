@@ -8,31 +8,27 @@ function loaddata() {
             keyboard: true,
             min: 0,
             max: 100,
-            step: 25,
+            step: 1,
             prefix: "%",
             grid: true
         });
+        
     });
 }
 
 function submit_posti(aula_id) {
     posti = parseInt($('#report-' + aula_id).val());
 
-    if(isNaN(posti)) {
-        alert('Inserisci un numero intero!');
-    }
-    else {
+     
         $.post('/api/posti', {
             posti_liberi: posti,
             user: 'io',
             aula: aula_id,
-            chaos: posti > 50,
+            chaos: false,
             lesson: false
         }, function(resp) {
-            alert('posted');
             loaddata();
         });
-    }
 }
 
 $(document).ready(function() {

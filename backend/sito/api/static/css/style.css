@@ -29,6 +29,12 @@
     display: inline;
 }
 
+.statContainer{
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
 .subtitleItem{
     line-height: 1px;
     display: inline;
@@ -36,8 +42,14 @@
 }
 
 .statText{
-    font-size: 1.3em;
+    font-size: 1.8em;
     line-height: 20px;
+}
+
+.statTextDate{
+    font-size: 1em;
+    line-height: 20px;
+    color: rgba(0,0,0,0.4);
 }
 
 .statTitle{
@@ -49,4 +61,8 @@
 .statSubTitle{
     color: rgba(0,0,0,0.4);
     line-height: 10px;
+}
+
+.btn-primary{
+    
 }
