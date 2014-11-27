@@ -71,7 +71,12 @@
                             <p class="statSubTitle">Estimate seats in %.</p>
                             <input type="text" class="statSlider" readonly="readonly" id="report-<%= data[i].id %>" name="value_slider" value="" />
                             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
-                            <!-- Toggle -->
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="ghetto-<%= data[i].id %>"><span class="ripple"></span><span class="check"></span>Ghetto</label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" id="lesson-<%= data[i].id %>"><span class="ripple"></span><span class="check"></span>Lesson</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +117,6 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Piano: -1</h3>
             </div>
-            
             <div class="list-group">
                 <!-- CONTENUTO -->
                 </div>
