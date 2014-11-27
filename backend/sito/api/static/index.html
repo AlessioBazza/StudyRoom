@@ -69,7 +69,7 @@
                         <div id="statRight">
                             <p class="statTitle">How many seats busy?</p>
                             <p class="statSubTitle">Estimate seats in %.</p>
-                            <input type="text" class="statSlider" id="report-<%= data[i].id %>" name="value_slider" value="" />
+                            <input type="text" class="statSlider" readonly="readonly" id="report-<%= data[i].id %>" name="value_slider" value="" />
                             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
                             <!-- Toggle -->
                         </div>
