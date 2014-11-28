@@ -66,7 +66,7 @@
                         <div id="statLeft">
                             <p class="statText"><b>Busy seats:</b> <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>%</p>
                             <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
-                            <p class="statTextDate"><b>Last update:</b> <%= (data[i].ultimo_aggiornamento)|| "More than 2h ago" %></p>
+                            <p class="statTextDate"><b>Last update:</b> <%= data[i].ultimo_aggiornamento|| "More than 2h ago" %></p>
 
                         </div>
                         <div id="statRight">
