@@ -56,11 +56,9 @@
                         </div>
                         <div class="row-content displayItem">
                             <p class="titleItem"><%= data[i].nome %></p>
-<<<<<<< Updated upstream
-                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento.substring(15, 21) || "More than 2h ago" %></p>
-=======
-                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento.substring(15, 21) || "More than 2h ago" %></p>
->>>>>>> Stashed changes
+
+                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento|| "More than 2h ago" %></p>
+
                         </div>
                     </div>
                     <!-- STAT INTERNE -->
@@ -68,11 +66,8 @@
                         <div id="statLeft">
                             <p class="statText"><b>Busy seats:</b> <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>%</p>
                             <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
-<<<<<<< Updated upstream
-                            <p class="statTextDate"><b>Last update:</b> <%= data[i].ultimo_aggiornamento.substring(15,21) || "More than 2h ago" %></p>
-=======
-                            <p class="statTextDate"><b>Last update:</b> <%= data[i].ultimo_aggiornamento.substring(15, 21) || "More than 2h ago" %></p>
->>>>>>> Stashed changes
+                            <p class="statTextDate"><b>Last update:</b> <%= (data[i].ultimo_aggiornamento)|| "More than 2h ago" %></p>
+
                         </div>
                         <div id="statRight">
                             <p class="statTitle">How many seats busy?</p>
