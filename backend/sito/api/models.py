@@ -48,12 +48,19 @@ class Aule(models.Model):
         recenti = Posti.get_posti_recenti(interval)
         return recenti.filter(aula=self)
 
-    def ultimo_aggiornamento(self):
+    def ultimo_aggiornamento(self, interval=settings.POSTI_DISPLAY_INTERVAL):
         """
-        Ritorna il timestamp dell'ultima segnalazione su quest'aula
+        Ritorna il timestamp dell'ultima segnalazione su quest'aula se piu'
+        recente di adesso intervallo altrimenti None
         """
         segnalazioni = self.posti_set.order_by('-timestamp')
-        return segnalazioni[0].timestamp if segnalazioni else None
+        if not segnalazioni:
+            return None
+        
+        adesso = settings.TIMEZONE.localize(datetime.now())
+        ultimo = segnalazioni[0].timestamp
+
+        return ultimo if (adesso - ultimo) < interval else None
 
     def stat(self, interval=settings.POSTI_DISPLAY_INTERVAL):
         """
