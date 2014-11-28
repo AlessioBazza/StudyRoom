@@ -51,7 +51,7 @@
                 <div class="row-content displayItem">
                     <p class="titleItem"><%= aula.nome %></p>
                     <p class="subtitleItem">
-                        Busy:  <%= aula.posti_liberi %> / <%= aula.dimensione %>  |   Last update: <%= aula.ultimo_aggiornamento %>
+                        Busy:  <%= aula.posti_liberi %>% / <%= aula.dimensione %>  |   Last update: <%= aula.ultimo_aggiornamento %>
                     </p>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
     <script type="text/html" id="template_statContainer">
         <div id="statLeft">
-            <p class="statText"><b>Busy seats:</b> <%= aula.posti_liberi %></p>
+            <p class="statText"><b>Busy seats:</b> <%= aula.posti_liberi %>%</p>
             <p class="statText"><b>Tot. seats:</b> <%= aula.dimensione %></p>
             <p class="statTextDate"><b>Last update:</b> <%= aula.ultimo_aggiornamento %></p>
         </div>
