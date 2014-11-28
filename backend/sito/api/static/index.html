@@ -34,6 +34,7 @@
 
             <div class="list-group">
                 <% for(var i = 0; i < data.length; i++) { %>
+                    <div class="list-group-separator"> </div>
                     <%= tmpl("template_containerItem", { aula: data[i] }) %>
                 <% } %>
             </div>
@@ -41,7 +42,6 @@
     </script>
 
     <script type="text/html" id="template_containerItem">
-        <div class="list-group-separator"> </div>
         <div class="containerItem" id="containerItem-<%= aula.index %>">
             <div class="list-group-item" onclick="renderAula(<%= aula.index %>, true)">
                 <div class="row-picture">
