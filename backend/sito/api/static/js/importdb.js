@@ -12,7 +12,6 @@ function loaddata() {
             prefix: "%",
             grid: true
         });
-        
     });
 }
 
@@ -29,7 +28,7 @@ function submit_posti(aula_id) {
             lesson: lesson,
         }, function(resp) {
             loaddata();
-        });
+        });    
 }
 
 $(document).ready(function() {

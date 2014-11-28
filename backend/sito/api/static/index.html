@@ -31,20 +31,20 @@
         <!-- MiniTemplate -->
             <script src="js/minitemplate.js"></script>
             <script src="js/importdb.js"></script>
-            <script src="js/hidemenu.js"></script>
         <!-- Slider -->
             <script src="js/ion.rangeSlider.js"></script>
+            
             <script type="text/javascript">
-            function nomeImmagine(aula) {
-                if(aula.stat == null) return "img/default.jpg";
-                else {
-                    var posti_perc = aula.stat.posti_liberi / aula.dimensione;
-                    var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
-                    var lesson = aula.stat.lesson ? "lesson" : "nolesson";
-                    var posti = aula.stat.posti_liberi < 40 ? "empty" : aula.stat.posti_liberi < 75 ? "medium" : "full";
-                    return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+                function nomeImmagine(aula) {
+                    if(aula.stat == null) return "img/default.jpg";
+                    else {
+                        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
+                        var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
+                        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
+                        var posti = aula.stat.posti_liberi < 40 ? "empty" : aula.stat.posti_liberi < 75 ? "medium" : "full";
+                        return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+                    }
                 }
-            }
             </script>
             <script type="text/html" id="template_aula">
                 <% for(var i = 0; i < data.length; i++) { %>
