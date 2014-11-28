@@ -11,81 +11,81 @@
     <title>StudyRoom</title>
     
     <!-- Style -->
-        <!-- Bootstrap -->
-            <link href="css/bootstrap.min.css" rel="stylesheet">
-        <!-- Slider -->
-            <link href="css/ion.rangeSlider.css" rel="stylesheet">
-            <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
-        <!-- CSS Filippo -->
-            <link href="css/material-wfont.min.css" rel="stylesheet">
-            <link href="css/general.css" rel="stylesheet">
-            <link href="css/style.css" rel="stylesheet">
-    
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/ion.rangeSlider.css" rel="stylesheet" />
+    <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
+    <link href="css/material-wfont.min.css" rel="stylesheet" />
+    <link href="css/general.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+
     <!-- Script -->
-        <!-- jQuery -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <!-- Material -->
-            <script src="js/material.js"></script>
-        <!-- BootStrap -->
-            <script src="js/bootstrap.min.js"></script>
-        <!-- MiniTemplate -->
-            <script src="js/minitemplate.js"></script>
-            <script src="js/importdb.js"></script>
-        <!-- Slider -->
-            <script src="js/ion.rangeSlider.js"></script>
-            
-            <script type="text/javascript">
-                function nomeImmagine(aula) {
-                    if(aula.stat == null) return "img/default.jpg";
-                    else {
-                        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
-                        var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
-                        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
-                        var posti = aula.stat.posti_liberi < 40 ? "empty" : aula.stat.posti_liberi < 75 ? "medium" : "full";
-                        return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
-                    }
-                }
-            </script>
-            <script type="text/html" id="template_aula">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/material.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/minitemplate.js"></script>
+    <script src="js/ion.rangeSlider.js"></script>
+    <script src="js/importdb.js"></script>
+
+    <script type="text/html" id="template_piano">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"> Piano: <%= data[0].piano %> </h3>
+            </div>
+
+            <div class="list-group">
                 <% for(var i = 0; i < data.length; i++) { %>
-                <div class="list-group-separator"></div>
-                <div class="containerItem">
-                    <div class="list-group-item" onclick="$('#statContainer-<%= data[i].id %>').toggle();">
-                        <div class="row-picture">
-                            <img class="circle" src="<%= nomeImmagine(data[i]) %>">
-                        </div>
-                        <div class="row-content displayItem">
-                            <p class="titleItem"><%= data[i].nome %></p>
+                    <%= tmpl("template_containerItem", { aula: data[i] }) %>
+                <% } %>
+            </div>
+        </div>
+    </script>
 
-                            <p class="subtitleItem">Busy:  <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>% / <%= data[i].dimensione %>  |   Last update: <%= data[i].ultimo_aggiornamento|| "More than 2h ago" %></p>
-
-                        </div>
-                    </div>
-                    <!-- STAT INTERNE -->
-                        <div class="statContainer" id="statContainer-<%= data[i].id %>">
-                        <div id="statLeft">
-                            <p class="statText"><b>Busy seats:</b> <%= parseInt(data[i].stat ? data[i].stat.posti_liberi : "0") %>%</p>
-                            <p class="statText"><b>Tot. seats:</b> <%= data[i].dimensione %></p>
-                            <p class="statTextDate"><b>Last update:</b> <%= data[i].ultimo_aggiornamento|| "More than 2h ago" %></p>
-
-                        </div>
-                        <div id="statRight">
-                            <p class="statTitle">How many seats busy?</p>
-                            <p class="statSubTitle">Estimate seats in %.</p>
-                            <input type="text" class="statSlider" readonly="readonly" id="report-<%= data[i].id %>" name="value_slider" value="" />
-                            <button type="button" class="btn btn-primary" onclick="submit_posti(<%= data[i].id %>);">Submit</button>
-                            <div class="checkbox">
-                                <label><input id="ghetto-<%= data[i].id %>" type="checkbox"><span class="ripple"></span><span class="check"></span>Ghetto</label>
-                            </div>
-                            <div class="checkbox">
-                                <label><input id="lesson-<%= data[i].id %>" type="checkbox"><span class="ripple"></span><span class="check"></span>Lesson</label>
-                            </div>
-                        </div>
-                    </div>
+    <script type="text/html" id="template_containerItem">
+        <div class="list-group-separator"> </div>
+        <div class="containerItem" id="containerItem-<%= aula.index %>">
+            <div class="list-group-item" onclick="renderAula(<%= aula.index %>, true)">
+                <div class="row-picture">
+                    <img class="circle" src="<%= aula.immagine %>">
                 </div>
-                <% } %>   
-            </script>
-    </head>
+
+                <div class="row-content displayItem">
+                    <p class="titleItem"><%= aula.nome %></p>
+                    <p class="subtitleItem">
+                        Busy:  <%= aula.posti_liberi %> / <%= aula.dimensione %>  |   Last update: <%= aula.ultimo_aggiornamento %>
+                    </p>
+                </div>
+            </div>
+
+            <div class="statContainer" id="statContainer-<%= aula.index %>"> </div>
+        </div>
+    </script>
+
+    <script type="text/html" id="template_statContainer">
+        <div id="statLeft">
+            <p class="statText"><b>Busy seats:</b> <%= aula.posti_liberi %></p>
+            <p class="statText"><b>Tot. seats:</b> <%= aula.dimensione %></p>
+            <p class="statTextDate"><b>Last update:</b> <%= aula.ultimo_aggiornamento %></p>
+        </div>
+
+        <div id="statRight">
+            <p class="statTitle">How many seats busy?</p>
+            <p class="statSubTitle">Estimate seats in %.</p>
+            <input type="text" class="statSlider" readonly="readonly" id="statSlider-<%= aula.index %>" name="value_slider" value="" />
+            <button type="button" class="btn btn-primary" onclick="submit_posti(<%= aula.index %>);">Submit</button>
+            <div class="checkbox">
+                <label><input id="ghetto-<%= aula.index %>" type="checkbox">
+                    <span class="ripple"></span><span class="check"></span>
+                    Ghetto</label>
+            </div>
+            <div class="checkbox">
+                <label><input id="lesson-<%= aula.index %>" type="checkbox">
+                    <span class="ripple"></span><span class="check"></span>
+                    Lesson
+                </label>
+            </div>
+        </div>
+    </script>
+</head>
 <body>
     <div class="navbar navbar-default">
         <div class="navbar-header">
@@ -96,34 +96,10 @@
             </button>
             <a class="navbar-brand" href="javascript:void(0)">StudyRoom</a>
         </div>
-        <!-- NavBar
-        <div class="navbar-collapse collapse navbar-responsive-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="javascript:void(0)">Action</a></li>
-                        <li><a href="javascript:void(0)">Another action</a></li>
-                        <li><a href="javascript:void(0)">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Dropdown header</li>
-                        <li><a href="javascript:void(0)">Separated link</a></li>
-                        <li><a href="javascript:void(0)">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div> -->
     </div>
     
     <div id="container">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Piano: -1</h3>
-            </div>
-            <div class="list-group">
-                <!-- CONTENUTO -->
-                </div>
-        </div>
+
     </div>
 </body>
 </html>
