@@ -2,16 +2,16 @@ function loaddata() {
     $.get('/api/aule?format=json', function(x) {
         data = x
         $('.list-group').html(tmpl('template_aula', data));
-        
+            /* SLIDER_SCRIPT || START */
         $(".statSlider").ionRangeSlider({
-            hide_min_max: true,
-            keyboard: false,
             min: 0,
             max: 100,
-            step: 1,
-            prefix: "%",
-            grid: true
+            from: 0,
+            postfix: "%",
+            grid: true,
+            hide_min_max: true,
         });
+            /* SLIDER_SCRIPT || END */
     });
 }
 
