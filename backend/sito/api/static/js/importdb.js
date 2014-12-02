@@ -1,5 +1,5 @@
 var data = null;
-var piani = null;
+var sezioni = null;
 
 function prepareAula(aula, index) {
     if(aula.ultimo_aggiornamento != null){
@@ -7,10 +7,9 @@ function prepareAula(aula, index) {
         var h = formattedDate.getHours();
         var m = formattedDate.getMinutes();
         aula.ultimo_aggiornamento = (h + ":" + m);
-    } else {
-        aula.ultimo_aggiornamento = "More than 2h ago"
-    }
+    } else aula.ultimo_aggiornamento = "More than 2h ago"
     
+    aula.sezione = aula.locazione + ' - Piano ' + aula.piano.toString();
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
     aula.immagine = nomeImmagine(index);
     aula.index = index;
@@ -21,17 +20,19 @@ function prepareAula(aula, index) {
 function loaddata() {
     $.get("/api/aule?format=json", function(x) {
         data = x
-        piani = [ [], [], [], [], [] ]
+        sezioni = { }
 
         for(var i = 0; i < data.length; i++) {
             prepareAula(data[i], i);
-            piani[data[i].piano + 1].push(data[i]);
+            if(!sezioni[data[i].sezione])
+                sezioni[data[i].sezione] = []
+
+            sezioni[data[i].sezione].push(data[i]);
         }
 
         var html = "";
-        for(var piano = 0; piano < piani.length; piano++) {
-            if(piani[piano].length > 0)
-                html = html.concat(tmpl("template_piano", { data: piani[piano] }));
+        for(var sezione in sezioni) {
+            html = html.concat(tmpl("template_piano", { data:sezioni[sezione] }));
         }
 
         $("#container").html(html);
