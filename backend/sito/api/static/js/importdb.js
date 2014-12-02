@@ -6,7 +6,6 @@ function prepareAula(aula, index) {
         var formattedDate = new Date(aula.ultimo_aggiornamento);
         var h = formattedDate.getHours();
         var m = formattedDate.getMinutes();
-        h += 1; //Fusorario
         aula.ultimo_aggiornamento = (h + ":" + m);
     } else {
         aula.ultimo_aggiornamento = "More than 2h ago"

@@ -13,9 +13,9 @@
     <!-- Style -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/material-wfont.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     <link href="css/general.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -55,12 +55,14 @@
                     </p>
                 </div>
             </div>
-
-            <div class="statContainer" id="statContainer-<%= aula.index %>"> </div>
+            <div class="statContainer" id="statContainer-<%= aula.index %>"></div>
         </div>
     </script>
 
     <script type="text/html" id="template_statContainer">
+        
+        <div id="statContainerItem">
+        
         <div id="statLeft">
             <p class="statText"><b>Busy seats:</b> <%= aula.posti_liberi %>%</p>
             <p class="statText"><b>Tot. seats:</b> <%= aula.dimensione %></p>
@@ -83,6 +85,7 @@
                     Lesson
                 </label>
             </div>
+        </div>
         </div>
     </script>
 </head>
