@@ -85,7 +85,7 @@ function updateAula(index) {
 function submit_posti(index) {
     var aula = data[index];
 
-    posti = parseInt($("#amount-" + index).val());
+    posti = parseInt(0 + $("#amount-" + index).val());
     lesson = $("#lesson-" + index).is(":checked");
     ghetto = $("#ghetto-" + index).is(":checked");
 
