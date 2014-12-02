@@ -17,15 +17,17 @@
     <link href="css/material-wfont.min.css" rel="stylesheet" />
     <link href="css/general.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
     <!-- Script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/material.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/minitemplate.js"></script>
-    <script src="js/ion.rangeSlider.js"></script>
     <script src="js/importdb.js"></script>
-
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    
     <script type="text/html" id="template_piano">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -70,7 +72,10 @@
         <div id="statRight">
             <p class="statTitle">How many seats busy?</p>
             <p class="statSubTitle">Estimate seats in %.</p>
-            <input type="text" class="statSlider" readonly="readonly" id="statSlider-<%= aula.index %>" name="value_slider" value="" />
+            <input type="text" id="amount-<%= aula.index %>" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            <div id="statSlider-<%= aula.index %>"></div>
+            <!--
+            <input type="text" class="statSlider" readonly="readonly" id="statSlider-<%= aula.index %>" name="value_slider" value="" />-->
             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= aula.index %>);">Submit</button>
             <div class="checkbox">
                 <label><input id="ghetto-<%= aula.index %>" type="checkbox">

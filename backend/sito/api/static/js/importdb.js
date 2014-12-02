@@ -51,7 +51,16 @@ function renderAula(index, show) {
     if(show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
-        $("#statSlider-" + index).ionRangeSlider({
+        $( "#statSlider-" + index ).slider({
+            value:0,
+            min: 0,
+            max: 100,
+            step: 1,
+            slide: function( event, ui ) {
+                $( "#amount-" + index ).val( ui.value + "%");
+            }
+        });
+        /*$("#statSlider-" + index).ionRangeSlider({
             hide_min_max: true,
             keyboard: false,
             min: 0,
@@ -59,7 +68,7 @@ function renderAula(index, show) {
             step: 1,
             prefix: "%",
             grid: true
-        });
+        });*/
     }
 }
 
@@ -76,7 +85,7 @@ function updateAula(index) {
 function submit_posti(index) {
     var aula = data[index];
 
-    posti = parseInt($("#statSlider-" + index).val());
+    posti = parseInt($("#amount-" + index).val());
     lesson = $("#lesson-" + index).is(":checked");
     ghetto = $("#ghetto-" + index).is(":checked");
 
