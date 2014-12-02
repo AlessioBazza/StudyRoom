@@ -12,8 +12,6 @@
     
     <!-- Style -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/ion.rangeSlider.css" rel="stylesheet" />
-    <link href="css/ion.rangeSlider.skinFlat.css" rel="stylesheet" />
     <link href="css/material-wfont.min.css" rel="stylesheet" />
     <link href="css/general.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
@@ -71,10 +69,8 @@
 
         <div id="statRight">
             <p class="statTitle">How many seats busy?</p>
-            <p class="statSubTitle">Your estimate is <input type="text" id="amount-<%= aula.index %>" readonly style="border:0;font-weight:bold;width:37px;">busy seats.</p>
+            <p class="statSubTitle">Your estimate is <input value="0%" type="text" id="amount-<%= aula.index %>" readonly style="border:0;font-weight:bold;width:37px;">busy seats.</p>
             <div id="statSlider-<%= aula.index %>"></div>
-            <!--
-            <input type="text" class="statSlider" readonly="readonly" id="statSlider-<%= aula.index %>" name="value_slider" value="" />-->
             <button type="button" class="btn btn-primary" onclick="submit_posti(<%= aula.index %>);">Submit</button>
             <div class="checkbox">
                 <label><input id="ghetto-<%= aula.index %>" type="checkbox">

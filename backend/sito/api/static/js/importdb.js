@@ -2,8 +2,17 @@ var data = null;
 var piani = null;
 
 function prepareAula(aula, index) {
+    if(aula.ultimo_aggiornamento != null){
+        var formattedDate = new Date(aula.ultimo_aggiornamento);
+        var h = formattedDate.getHours();
+        var m = formattedDate.getMinutes();
+        h += 1; //Fusorario
+        aula.ultimo_aggiornamento = (h + ":" + m);
+    } else {
+        aula.ultimo_aggiornamento = "More than 2h ago"
+    }
+    
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
-    aula.ultimo_aggiornamento = aula.ultimo_aggiornamento || "More than 2h ago";
     aula.immagine = nomeImmagine(index);
     aula.index = index;
 
@@ -60,15 +69,6 @@ function renderAula(index, show) {
                 $( "#amount-" + index ).val( ui.value + "%");
             }
         });
-        /*$("#statSlider-" + index).ionRangeSlider({
-            hide_min_max: true,
-            keyboard: false,
-            min: 0,
-            max: 100,
-            step: 1,
-            prefix: "%",
-            grid: true
-        });*/
     }
 }
 
@@ -78,14 +78,14 @@ function updateAula(index) {
     $.get("/api/aule/" + aula.id + "?format=json", function(update) {
         delete update.posti_set;
         prepareAula(update, index);
-        renderAula(index, true);
+        renderAula(index, false);
     });
 }
 
 function submit_posti(index) {
     var aula = data[index];
 
-    posti = parseInt(0 + $("#amount-" + index).val());
+    posti = parseInt($("#amount-" + index).val());
     lesson = $("#lesson-" + index).is(":checked");
     ghetto = $("#ghetto-" + index).is(":checked");
 
