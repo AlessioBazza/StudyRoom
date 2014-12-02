@@ -52,7 +52,7 @@ function renderAula(index, show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
         $( "#statSlider-" + index ).slider({
-            value:0,
+            value: 1,
             min: 0,
             max: 100,
             step: 1,
