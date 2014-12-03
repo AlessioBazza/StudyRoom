@@ -13,15 +13,15 @@ function prepareAula(aula, index) {
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
     aula.index = index;
 
-    if(aula.stat == null) aula.immagine = "img/default.jpg";
+    if(aula.stat == null) aula.immagine = "img/default.png";
     else {
         var posti_perc = aula.stat.posti_liberi / aula.dimensione;
         var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
         var lesson = aula.stat.lesson ? "lesson" : "nolesson";
         var posti = aula.stat.posti_liberi < 40 ? "empty" : (
-            aula.stat.posti_liberi < 75 ? "medium" : "full");
+                    aula.stat.posti_liberi < 75 ? "medium" : "full");
 
-        aula.immagine = "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+        aula.immagine = "img/" + ghetto + "_" + lesson + "_" + posti + ".png";
     }
 
     data[index] = aula;
