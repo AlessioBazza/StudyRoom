@@ -6,7 +6,7 @@ function prepareAula(aula, index) {
         var formattedDate = new Date(aula.ultimo_aggiornamento);
         var h = formattedDate.getHours();
         var m = formattedDate.getMinutes();
-        aula.ultimo_aggiornamento = (h + ":" + m);
+        aula.ultimo_aggiornamento = ((h < 10 ? '0' + h : h) + ":" + (m < 10 ? '0' + m : m));
     } else aula.ultimo_aggiornamento = "More than 2h ago"
     
     aula.sezione = aula.locazione + ' - Piano ' + aula.piano.toString();
