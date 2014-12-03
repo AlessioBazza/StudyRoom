@@ -25,8 +25,6 @@ function prepareAula(aula, index) {
     }
 
     data[index] = aula;
-
-    console.debug('prepare');
 }
 
 function loaddata() {
