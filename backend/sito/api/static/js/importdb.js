@@ -11,8 +11,18 @@ function prepareAula(aula, index) {
     
     aula.sezione = aula.locazione + ' - Piano ' + aula.piano.toString();
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
-    aula.immagine = nomeImmagine(index);
     aula.index = index;
+
+    if(aula.stat == null) aula.immagine = "img/default.jpg";
+    else {
+        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
+        var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
+        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
+        var posti = aula.stat.posti_liberi < 40 ? "empty" : (
+            aula.stat.posti_liberi < 75 ? "medium" : "full");
+
+        aula.immagine = "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
+    }
 
     data[index] = aula;
 }
@@ -37,19 +47,6 @@ function loaddata() {
 
         $("#container").html(html);
     });
-}
-
-function nomeImmagine(index) {
-    var aula = data[index];
-
-    if(aula.stat == null) return "img/default.jpg";
-    else {
-        var posti_perc = aula.stat.posti_liberi / aula.dimensione;
-        var ghetto = aula.stat.ghetto > 50 ? "ghetto" : "noghetto";
-        var lesson = aula.stat.lesson ? "lesson" : "nolesson";
-        var posti = aula.stat.posti_liberi < 40 ? "empty" : aula.stat.posti_liberi < 75 ? "medium" : "full";
-        return "img/" + ghetto + "_" + lesson + "_" + posti + ".jpg";
-    }
 }
 
 function renderAula(index, show) {
