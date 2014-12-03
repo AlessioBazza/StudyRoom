@@ -9,7 +9,7 @@ function prepareAula(aula, index) {
         aula.ultimo_aggiornamento = ((h < 10 ? '0' + h : h) + ":" + (m < 10 ? '0' + m : m));
     } else aula.ultimo_aggiornamento = "More than 2h ago"
     
-    aula.sezione = aula.locazione + ' - Piano ' + aula.piano.toString();
+    aula.sezione = aula.locazione + ' - Piano: ' + aula.piano.toString();
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
     aula.index = index;
 
@@ -58,7 +58,7 @@ function renderAula(index, show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
         $( "#statSlider-" + index ).slider({
-            value: 1,
+            value: aula.stat.posti_liberi,
             min: 0,
             max: 100,
             step: 1,

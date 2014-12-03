@@ -71,7 +71,7 @@
 
         <div id="statRight">
             <p class="statTitle">How many seats busy?</p>
-            <p class="statSubTitle">Your estimate is <input value="0%" type="text" id="amount-<%= aula.index %>" readonly style="border:0;font-weight:bold;width:37px;">busy seats.</p>
+            <p class="statSubTitle">Your estimate is <input value="<%= aula.stat.posti_liberi %>%" type="text" id="amount-<%= aula.index %>" readonly style="border:0;font-weight:bold;width:37px;">busy seats.</p>
             <div id="statSlider-<%= aula.index %>"></div>
           
                 <button type="button" class="btn btn-primary" onclick="submit_posti(<%= aula.index %>);">Submit</button>
