@@ -25,6 +25,8 @@ function prepareAula(aula, index) {
     }
 
     data[index] = aula;
+
+    console.debug('prepare');
 }
 
 function loaddata() {
@@ -57,8 +59,8 @@ function renderAula(index, show) {
     if(show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
-        $( "#statSlider-" + index ).slider({
-            value: aula.stat.posti_liberi,
+        $("#statSlider-" + index).slider({
+            value: aula.posti_liberi,
             min: 0,
             max: 100,
             step: 1,
