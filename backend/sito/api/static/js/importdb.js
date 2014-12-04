@@ -57,6 +57,10 @@ function renderAula(index, show) {
     if(show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
+        var path='../img/sliderBack.png';
+        //$("#statSlider-" + index).css('background','linear-gradient(left, #80f115, #f8e33b,#c1392f)');
+        $("#statSlider-" + index).css('background', '#4285f4');
+        //$("#statSlider-" + index).css('background-image','url(' + path + ')');
         $("#statSlider-" + index).slider({
             value: aula.posti_liberi,
             min: 0,
