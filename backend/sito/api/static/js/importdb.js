@@ -9,7 +9,7 @@ function prepareAula(aula, index) {
         aula.ultimo_aggiornamento = ((h < 10 ? '0' + h : h) + ":" + (m < 10 ? '0' + m : m));
     } else aula.ultimo_aggiornamento = "More than 2h ago"
     
-    aula.sezione = aula.locazione + ' - Piano: ' + aula.piano.toString();
+    aula.sezione = aula.locazione + ' / Piano: ' + aula.piano.toString();
     aula.posti_liberi = parseInt(aula.stat ? aula.stat.posti_liberi : "0");
     aula.index = index;
 
@@ -23,6 +23,8 @@ function prepareAula(aula, index) {
 
         aula.immagine = "img/" + ghetto + "_" + lesson + "_" + posti + ".png";
     }
+    
+    aula.mappaImg = "img/map/" + aula.locazione + "_" + aula.piano + ".png";
 
     data[index] = aula;
 }
@@ -51,9 +53,7 @@ function loaddata() {
 
 function renderAula(index, show) {
     var aula = data[index];
-
     $("#containerItem-" + index).html(tmpl("template_containerItem", { aula: aula, index: index }));
-
     if(show) {
         $(".statContainer").hide().html("");
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();

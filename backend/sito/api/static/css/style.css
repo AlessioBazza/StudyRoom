@@ -67,6 +67,11 @@
     display: inline;
 }
 
+.btnMap{
+    float:right;
+    display: inline;
+}
+
 /* Media */
 @media only screen and (max-width: 1024px){
     .statContainer{

@@ -29,10 +29,12 @@
     <script type="text/html" id="template_piano">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title"> <%= data[0].sezione %> </h3>
+                <h3 class="panel-title" style="display:inline;"><%= data[0].sezione %></h3>
+                    <div class="btnMap">Map</div>
             </div>
 
             <div class="list-group">
+                <div id="containerMap"><img src="<%= data[0].mappaImg %>"></div>
                 <% for(var i = 0; i < data.length; i++) { %>
                     <div class="list-group-separator"> </div>
                     <%= tmpl("template_containerItem", { aula: data[i] }) %>

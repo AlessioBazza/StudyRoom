@@ -41,6 +41,11 @@ header{
     padding-top: 20px;
 }
 
+#containerMap{
+    background: white;
+    
+}
+
 /* Media */
 @media only screen and (max-width: 1024px){
     #container{
