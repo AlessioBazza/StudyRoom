@@ -79,12 +79,10 @@ function renderAula(index, show) {
 
 function updateAula(index) {
     var aula = data[index];
-
     $.get("/api/aule/" + aula.id + "?format=json", function(update) {
         delete update.posti_set;
         prepareAula(update, index);
         renderAula(index, false);
-        toggleMap(index);
     });
 }
 
