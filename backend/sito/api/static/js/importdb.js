@@ -25,8 +25,12 @@ function prepareAula(aula, index) {
     }
     
     aula.mappaImg = "img/map/" + aula.locazione + "_" + aula.piano + ".png";
-
+    
     data[index] = aula;
+}
+
+function toggleMap(index){
+    $("#containerMap-" + index).toggle();
 }
 
 function loaddata() {
@@ -80,6 +84,7 @@ function updateAula(index) {
         delete update.posti_set;
         prepareAula(update, index);
         renderAula(index, false);
+        toggleMap(index);
     });
 }
 

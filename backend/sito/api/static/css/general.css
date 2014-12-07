@@ -41,9 +41,9 @@ header{
     padding-top: 20px;
 }
 
-#containerMap{
+.containerMap{
     background: white;
-    
+    display: none;
 }
 
 /* Media */
