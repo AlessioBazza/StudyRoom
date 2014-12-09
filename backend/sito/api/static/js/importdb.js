@@ -24,7 +24,7 @@ function prepareAula(aula, index) {
         aula.immagine = "img/" + ghetto + "_" + lesson + "_" + posti + ".png";
     }
     
-    aula.mappaImg = "img/map/" + aula.locazione + "_" + aula.piano + ".png";
+        aula.mappaImg = "img/map/" + aula.locazione + "_" + aula.piano + ".png";
     
     data[index] = aula;
 }
