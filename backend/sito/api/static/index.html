@@ -80,17 +80,18 @@
             <div id="statSlider-<%= aula.index %>"></div>
           
                 <button type="button" class="btn btn-primary" onclick="submit_posti(<%= aula.index %>);">Submit</button>
+                <div class="checkboxContainer">
                 <div class="checkbox">
                     <label><input id="ghetto-<%= aula.index %>" type="checkbox">
-                        <span class="ripple"></span><span class="check"></span>
-                        Ghetto</label>
+                        <span class="ripple"></span><span class="check"></span>Ghetto
+                    </label>
                 </div>
                 <div class="checkbox">
                     <label><input id="lesson-<%= aula.index %>" type="checkbox">
-                        <span class="ripple"></span><span class="check"></span>
-                        Lesson
+                        <span class="ripple"></span><span class="check"></span>Lesson
                     </label>
                 </div>
+            </div>
             </div>
         </div>
     </script>
