@@ -67,6 +67,10 @@
     display: inline;
 }
 
+.checkboxContainer{
+    display: inline;
+}
+
 .btnMap{
     float:right;
     display: inline;
@@ -89,6 +93,10 @@
         display: none;
     }
     .checkbox{
+        display: inline;
+    }
+    .checkboxContainer{
+        margin-top: 2%;
         display: block;
     }
     .mapImg{
@@ -103,9 +111,12 @@
         display: none;
     }
     .checkbox{
-        display: block;
+        display: inline;
     }
-    
+    .checkboxContainer{
+        display: block;
+        margin-bottom: 3%;
+    }
     .mapImg{
         margin-top: 2%;
         margin-bottom: 2%;
