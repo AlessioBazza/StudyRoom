@@ -1,5 +1,5 @@
 {
-    "Polo Ferrari": [
+    "Povo 1": [
         {
             "piano": -1, 
             "dimensione": 190, 
@@ -39,7 +39,7 @@
             "piano": -1, 
             "dimensione": 73, 
             "nome": "A108"
-        }, 
+        },
         {
             "piano": -1, 
             "dimensione": 50, 
@@ -164,7 +164,16 @@
             "piano": 0, 
             "dimensione": 53, 
             "nome": "A224"
-        }, 
+        }
+    ],
+    "Biblioteca": [
+        {
+            "piano": 0, 
+            "dimensione": 200, 
+            "nome": "Bibilioteca"
+        }
+    ],
+    "Povo 2": [
         {
             "piano": -1, 
             "dimensione": 78, 
@@ -199,16 +208,6 @@
             "piano": 0, 
             "dimensione": 180, 
             "nome": "B107"
-        }, 
-        {
-            "piano": -1, 
-            "dimensione": 100, 
-            "nome": "Aula Lettura"
-        }, 
-        {
-            "piano": 0, 
-            "dimensione": 200, 
-            "nome": "Bibilioteca"
         }
     ]
 }

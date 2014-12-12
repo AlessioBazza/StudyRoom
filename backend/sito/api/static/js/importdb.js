@@ -58,13 +58,12 @@ function loaddata() {
 function renderAula(index, show) {
     var aula = data[index];
     $("#containerItem-" + index).html(tmpl("template_containerItem", { aula: aula, index: index }));
-    if(show) {
-        $(".statContainer").hide().html("");
+    $(".statContainer").hide().html("");
+    
+    //if(controllo statcontainer-[index].display, se none è chiuso, se block è aperto    if("#statContainer-" + index).style.display == none)
+    if(show){
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
-        var path='../img/sliderBack.png';
-        //$("#statSlider-" + index).css('background','linear-gradient(left, #80f115, #f8e33b,#c1392f)');
         $("#statSlider-" + index).css('background', '#4285f4');
-        //$("#statSlider-" + index).css('background-image','url(' + path + ')');
         $("#statSlider-" + index).slider({
             value: aula.posti_liberi,
             min: 0,
@@ -73,7 +72,7 @@ function renderAula(index, show) {
             slide: function( event, ui ) {
                 $( "#amount-" + index ).val( ui.value + "%");
             }
-        });
+        });   
     }
 }
 
@@ -85,6 +84,7 @@ function updateAula(index) {
         renderAula(index, false);
     });
 }
+
 
 function submit_posti(index) {
     var aula = data[index];
