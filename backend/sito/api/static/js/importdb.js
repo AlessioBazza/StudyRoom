@@ -59,7 +59,9 @@ function renderAula(index, show) {
     var aula = data[index];
     $("#containerItem-" + index).html(tmpl("template_containerItem", { aula: aula, index: index }));
     $(".statContainer").hide().html("");
-    if(show) {
+    
+    //if(controllo statcontainer-[index].display, se none è chiuso, se block è aperto    if("#statContainer-" + index).style.display == none)
+    if(show){
         $("#statContainer-" + index).html(tmpl("template_statContainer", { aula: aula, index: index })).show();
         $("#statSlider-" + index).css('background', '#4285f4');
         $("#statSlider-" + index).slider({
@@ -82,6 +84,7 @@ function updateAula(index) {
         renderAula(index, false);
     });
 }
+
 
 function submit_posti(index) {
     var aula = data[index];
